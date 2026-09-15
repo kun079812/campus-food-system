@@ -1,0 +1,1 @@
+PUT http://localhost:8080/merchant/order/1/status?status=PENDING
