@@ -17,6 +17,9 @@ public class Dish {
 
     private Integer stock;
 
-    private Integer status;
+    private String description;
 
+    private String imageUrl;
+
+    private Integer status;
 }

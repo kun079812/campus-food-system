@@ -1,20 +1,27 @@
 package com.campus.food.entity;
 
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 
 @Data
-public class SysUser {
+public class DeliveryAddress {
 
     private Long id;
-    private String username;
-    @JsonIgnore
-    private String passwordHash;
-    private String realName;
+
+    private Long studentId;
+
+    private String contactName;
+
     private String phone;
-    private String roleCode;
+
+    private String detail;
+
+    private Integer isDefault;
+
     private Integer status;
+
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 }

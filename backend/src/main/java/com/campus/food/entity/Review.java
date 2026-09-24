@@ -5,21 +5,19 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class FoodOrder {
+public class Review {
 
     private Long id;
 
+    private Long orderId;
+
     private Long userId;
 
-    private Long stallId;
+    private Integer rating;
 
-    private Double totalAmount;
+    private String content;
 
-    private String status;
-
-    private String deliveryType;
-
-    private Long addressId;
+    private Integer status;
 
     private LocalDateTime createdAt;
 

@@ -92,4 +92,80 @@ public class UserService {
         // 5. 登录成功
         return user;
     }
+    public SysUser findById(Long userId) {
+        SysUser user = sysUserMapper.findById(userId);
+
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+
+        return user;
+    }
+
+    public SysUser updateProfile(
+            Long userId,
+            SysUser requestUser
+    ) {
+        if (requestUser.getRealName() == null
+                || requestUser.getRealName().isBlank()) {
+            throw new RuntimeException("姓名不能为空");
+        }
+
+        if (requestUser.getPhone() == null
+                || requestUser.getPhone().isBlank()) {
+            throw new RuntimeException("手机号不能为空");
+        }
+
+        SysUser oldUser = findById(userId);
+
+        SysUser phoneUser = sysUserMapper.findByPhone(
+                requestUser.getPhone()
+        );
+
+        if (phoneUser != null
+                && !userId.equals(phoneUser.getId())) {
+            throw new RuntimeException("手机号已注册");
+        }
+
+        oldUser.setRealName(requestUser.getRealName());
+        oldUser.setPhone(requestUser.getPhone());
+
+        sysUserMapper.updateProfile(oldUser);
+
+        return oldUser;
+    }
+    public void updatePassword(
+            Long userId,
+            String oldPassword,
+            String newPassword
+    ) {
+        if (oldPassword == null || oldPassword.isBlank()) {
+            throw new RuntimeException("原密码不能为空");
+        }
+
+        if (newPassword == null || newPassword.length() < 8) {
+            throw new RuntimeException("新密码长度不能少于8位");
+        }
+
+        SysUser user = findById(userId);
+
+        if (!passwordEncoder.matches(
+                oldPassword,
+                user.getPasswordHash()
+        )) {
+            throw new RuntimeException("原密码错误");
+        }
+
+        if (passwordEncoder.matches(
+                newPassword,
+                user.getPasswordHash()
+        )) {
+            throw new RuntimeException("新密码不能与原密码相同");
+        }
+
+        sysUserMapper.updatePassword(
+                userId,
+                passwordEncoder.encode(newPassword)
+        );
+    }
 }

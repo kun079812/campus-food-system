@@ -1,1 +1,49 @@
-PUT http://localhost:8080/merchant/order/1/status?status=PENDING
+### 学生登录：请先运行这一段，IDE 会保存 JSESSIONID Cookie
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "address_student_0922",
+  "password": "Test12345"
+}
+
+###
+
+### 食堂与档口，档口项应包含 dishCount
+GET http://localhost:8080/api/canteens/1/stalls
+
+###
+
+### 公开评价，无须登录
+GET http://localhost:8080/api/reviews
+
+###
+
+### 当前学生评价，需要学生登录 Cookie
+GET http://localhost:8080/api/student/reviews
+
+###
+
+### 当前学生购物车，需要学生登录 Cookie
+GET http://localhost:8080/api/cart/items
+
+###
+
+### 商家登录：运行后会替换为商家 Session
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "merchant_test",
+  "password": "12345678"
+}
+
+###
+
+### 商家订单，需要商家登录 Cookie
+GET http://localhost:8080/api/merchant/orders
+
+###
+
+### 商家首页，需要商家登录 Cookie
+GET http://localhost:8080/api/merchant/dashboard/summary
