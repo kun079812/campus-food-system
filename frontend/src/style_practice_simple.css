@@ -1,0 +1,191 @@
+/* 让所有元素的宽高计算更容易理解 */
+* {
+  box-sizing: border-box;
+}
+
+/* 整个网页 */
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  color: #263b36;
+  background: #eef6f2;
+}
+
+/* 登录页面，占满整个浏览器 */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      #d4eee3 0,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      #f9dfbd 0,
+      transparent 32%
+    ),
+    #eef6f2;
+}
+
+/* 登录卡片 */
+.login-card {
+  width: 420px;
+  padding: 42px;
+  background-color: white;
+  border: 1px solid #e1eee8;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(40, 80, 65, 0.14);
+}
+
+/* 登录页面顶部 */
+.login-header {
+  text-align: center;
+}
+
+/* 绿色 Logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  color: white;
+  background-color: #13796c;
+  border-radius: 16px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* 英文小标题 */
+.small-title {
+  margin: 0 0 10px;
+  color: #138273;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+/* 中文主标题 */
+.login-header h1 {
+  margin: 0 0 10px;
+  color: #203a33;
+  font-size: 30px;
+}
+
+/* 标题下面的说明文字 */
+.login-header > p:last-child {
+  margin: 0;
+  color: #87958f;
+  font-size: 14px;
+}
+
+/* 消费者和商家切换区域 */
+.role-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin: 30px 0 24px;
+  padding: 5px;
+  background-color: #edf5f1;
+  border-radius: 12px;
+}
+
+/* 身份切换按钮 */
+.role-tabs button {
+  padding: 11px 5px;
+  border: none;
+  color: #71827b;
+  background-color: transparent;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+/* 当前选中的身份 */
+.role-tabs button.active {
+  color: white;
+  background-color: #13796c;
+  box-shadow: 0 5px 12px rgba(19, 121, 108, 0.2);
+}
+
+/* 表单 */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 表单文字 */
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #53645e;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* 输入框 */
+.login-form input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dbe8e1;
+  outline: none;
+  color: #263b36;
+  background-color: #fbfdfc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* 输入框获得焦点时 */
+.login-form input:focus {
+  border-color: #13796c;
+  box-shadow: 0 0 0 3px rgba(19, 121, 108, 0.1);
+}
+
+/* 登录按钮 */
+.login-button {
+  margin-top: 6px;
+  padding: 14px;
+  border: none;
+  color: white;
+  background-color: #13796c;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* 鼠标移动到登录按钮上 */
+.login-button:hover {
+  background-color: #0e6258;
+}
+
+/* 鼠标按下登录按钮 */
+.login-button:active {
+  transform: scale(0.98);
+}
+
+/* 页面底部提示 */
+.login-tip {
+  margin: 24px 0 0;
+  color: #9aa7a2;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* 手机屏幕适配 */
+@media (max-width: 500px) {
+  .login-card {
+    width: 100%;
+    padding: 30px 22px;
+  }
+
+  .login-header h1 {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "campus-food-order-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:ui": "node tests/ui-smoke.mjs",
+    "test:live": "node tests/live-backend.mjs",
+    "format:campus": "prettier --write src/CampusApp.vue src/campus.css src/components src/services src/views tests vite.config.js"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "element-plus": "^2.11.0",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "prettier": "^3.9.9",
+    "vite": "^8.2.2"
+  }
+}

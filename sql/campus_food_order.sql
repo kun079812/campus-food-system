@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `campus_food_order` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `campus_food_order`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: localhost    Database: campus_food_order
@@ -7,7 +9,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +31,7 @@ CREATE TABLE `canteen` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,7 @@ CREATE TABLE `canteen` (
 
 LOCK TABLES `canteen` WRITE;
 /*!40000 ALTER TABLE `canteen` DISABLE KEYS */;
-INSERT INTO `canteen` VALUES (1,'第一食堂','学校北区','2026-09-14 21:55:04','2026-09-14 21:55:04');
+INSERT INTO `canteen` VALUES (1,'第一食堂','学校北区','2026-10-12 21:45:27','2026-10-12 21:45:27'),(2,'第二食堂','学校南区','2026-10-12 21:45:27','2026-10-12 21:45:27');
 /*!40000 ALTER TABLE `canteen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +63,7 @@ CREATE TABLE `cart_item` (
   KEY `fk_cart_dish` (`dish_id`),
   CONSTRAINT `fk_cart_dish` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
   CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +72,6 @@ CREATE TABLE `cart_item` (
 
 LOCK TABLES `cart_item` WRITE;
 /*!40000 ALTER TABLE `cart_item` DISABLE KEYS */;
-INSERT INTO `cart_item` VALUES (7,5,4,1,'2026-09-24 19:23:19','2026-09-24 19:23:19');
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +104,7 @@ CREATE TABLE `delivery_address` (
 
 LOCK TABLES `delivery_address` WRITE;
 /*!40000 ALTER TABLE `delivery_address` DISABLE KEYS */;
-INSERT INTO `delivery_address` VALUES (1,5,'地址测试学生','13900000001','第一食堂门口',1,1,'2026-09-22 22:45:15','2026-09-22 22:45:15');
+INSERT INTO `delivery_address` VALUES (1,1,'困困','15383452536','32舍一层',1,1,'2026-10-12 21:58:54','2026-10-12 21:58:54');
 /*!40000 ALTER TABLE `delivery_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +134,7 @@ CREATE TABLE `dish` (
   CONSTRAINT `fk_dish_stall` FOREIGN KEY (`stall_id`) REFERENCES `stall` (`id`),
   CONSTRAINT `chk_dish_price` CHECK ((`price` > 0)),
   CONSTRAINT `chk_dish_stock` CHECK ((`stock` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +143,7 @@ CREATE TABLE `dish` (
 
 LOCK TABLES `dish` WRITE;
 /*!40000 ALTER TABLE `dish` DISABLE KEYS */;
-INSERT INTO `dish` VALUES (2,1,1,'宫保鸡丁盖饭升级版',18.00,30,'经典盖饭套餐',NULL,0,'2026-09-14 22:09:40','2026-09-19 00:07:13'),(3,1,1,'鱼香肉丝盖饭',16.00,30,NULL,NULL,1,'2026-09-15 19:42:19','2026-09-15 19:42:19'),(4,2,2,'商家测试盖饭升级版',13.80,13,NULL,NULL,1,'2026-09-22 22:32:07','2026-09-24 18:48:15'),(5,2,2,'图文测试盖饭',12.80,10,'鸡肉、时蔬和米饭搭配的套餐。','https://example.com/images/test-rice.jpg',1,'2026-09-23 19:21:35','2026-09-24 18:48:15'),(6,2,3,'选择下单测试菜',10.00,19,'用于测试指定购物车项下单',NULL,1,'2026-09-24 19:22:51','2026-09-24 19:33:38');
+INSERT INTO `dish` VALUES (1,1,20,'豆乳玉麒麟',14.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(2,1,20,'豆乳米麻薯',16.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(3,1,20,'冰鲜柠檬水',4.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(4,1,20,'杨枝甘露',8.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(5,1,20,'芋圆葡萄',12.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(6,1,20,'黑糖珍珠奶茶',10.00,100,'茶百道饮品',NULL,1,'2026-10-12 21:49:43','2026-10-12 21:49:43'),(8,4,12,'薯条',15.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(9,4,12,'蛋挞',8.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(10,4,22,'汉堡',16.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(11,4,22,'鸡肉卷',15.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(12,4,17,'豆浆',4.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(13,4,17,'可乐',5.00,100,'麦当劳餐品',NULL,1,'2026-10-12 21:53:29','2026-10-12 21:53:29'),(15,2,3,'鱼香肉丝盖饭',15.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(16,2,3,'宫保鸡丁盖饭',15.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(17,2,3,'土豆牛肉盖饭',15.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(18,2,8,'火腿鸡蛋炒面',17.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(19,2,8,'番茄鸡蛋汤面',16.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(20,2,18,'红茶',3.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(21,2,18,'绿茶',3.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(22,2,18,'牛奶',3.00,100,'炒菜馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(30,5,6,'兰州拉面',12.00,100,'清真馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(31,5,1,'炒饭',10.00,100,'清真馆菜品',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21'),(33,3,24,'麻辣烫',20.00,100,'张师傅麻辣烫',NULL,1,'2026-10-12 22:01:21','2026-10-12 22:01:21');
 /*!40000 ALTER TABLE `dish` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +163,7 @@ CREATE TABLE `dish_category` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_dish_category_stall_name` (`stall_id`,`name`),
   KEY `idx_dish_category_stall_id` (`stall_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +172,7 @@ CREATE TABLE `dish_category` (
 
 LOCK TABLES `dish_category` WRITE;
 /*!40000 ALTER TABLE `dish_category` DISABLE KEYS */;
-INSERT INTO `dish_category` VALUES (1,1,'盖饭','2026-09-14 22:04:53','2026-09-24 18:48:04'),(2,2,'盖饭','2026-09-24 18:48:10','2026-09-24 18:48:10'),(3,2,'饮品','2026-09-24 19:01:27','2026-09-24 19:01:27');
+INSERT INTO `dish_category` VALUES (1,5,'米饭','2026-10-12 21:45:27','2026-10-12 21:45:27'),(2,4,'米饭','2026-10-12 21:45:27','2026-10-12 21:45:27'),(3,2,'米饭','2026-10-12 21:45:27','2026-10-12 21:45:27'),(4,3,'米饭','2026-10-12 21:45:27','2026-10-12 21:45:27'),(6,5,'面条','2026-10-12 21:45:27','2026-10-12 21:45:27'),(7,4,'面条','2026-10-12 21:45:27','2026-10-12 21:45:27'),(8,2,'面条','2026-10-12 21:45:27','2026-10-12 21:45:27'),(9,3,'面条','2026-10-12 21:45:27','2026-10-12 21:45:27'),(11,5,'小吃','2026-10-12 21:45:27','2026-10-12 21:45:27'),(12,4,'小吃','2026-10-12 21:45:27','2026-10-12 21:45:27'),(13,2,'小吃','2026-10-12 21:45:27','2026-10-12 21:45:27'),(14,3,'小吃','2026-10-12 21:45:27','2026-10-12 21:45:27'),(16,5,'饮品','2026-10-12 21:45:27','2026-10-12 21:45:27'),(17,4,'饮品','2026-10-12 21:45:27','2026-10-12 21:45:27'),(18,2,'饮品','2026-10-12 21:45:27','2026-10-12 21:45:27'),(19,3,'饮品','2026-10-12 21:45:27','2026-10-12 21:45:27'),(20,1,'饮品','2026-10-12 21:45:27','2026-10-12 21:45:27'),(21,5,'快餐','2026-10-12 21:45:27','2026-10-12 21:45:27'),(22,4,'快餐','2026-10-12 21:45:27','2026-10-12 21:45:27'),(23,2,'快餐','2026-10-12 21:45:27','2026-10-12 21:45:27'),(24,3,'快餐','2026-10-12 21:45:27','2026-10-12 21:45:27');
 /*!40000 ALTER TABLE `dish_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +203,7 @@ CREATE TABLE `food_order` (
   CONSTRAINT `food_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`id`),
   CONSTRAINT `food_order_ibfk_2` FOREIGN KEY (`stall_id`) REFERENCES `stall` (`id`),
   CONSTRAINT `food_order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `delivery_address` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +212,6 @@ CREATE TABLE `food_order` (
 
 LOCK TABLES `food_order` WRITE;
 /*!40000 ALTER TABLE `food_order` DISABLE KEYS */;
-INSERT INTO `food_order` VALUES (1,NULL,1,1,18.00,0.00,'ACCEPTED','PICKUP',NULL,NULL,'2026-09-15 20:00:11','2026-09-15 20:02:53'),(2,NULL,5,2,69.00,0.00,'CANCELLED','DELIVERY',1,NULL,'2026-09-22 22:57:20','2026-09-22 23:05:48'),(3,NULL,5,2,27.60,0.00,'COMPLETED','DELIVERY',1,NULL,'2026-09-22 23:00:37','2026-09-22 23:02:28'),(4,NULL,5,2,13.80,0.00,'COMPLETED','PICKUP',NULL,NULL,'2026-09-22 23:07:06','2026-09-22 23:08:38'),(5,NULL,5,2,13.80,0.00,'WAIT_ACCEPT','PICKUP',NULL,NULL,'2026-09-22 23:53:00','2026-09-22 23:56:33'),(6,'ORD85A28FFA92AB45EAA763',5,2,13.80,0.00,'CANCELLED','PICKUP',NULL,'不要香菜','2026-09-24 18:14:53','2026-09-24 18:15:16'),(7,'ORDA120BA61542648A09C34',5,2,13.80,13.80,'WAIT_ACCEPT','PICKUP',NULL,NULL,'2026-09-24 18:30:26','2026-09-24 18:30:45'),(8,'ORDCEE8E82CB6F5491296A9',5,2,10.00,10.00,'WAIT_ACCEPT','PICKUP',NULL,'只结算测试菜','2026-09-24 19:24:03','2026-09-24 19:33:38');
 /*!40000 ALTER TABLE `food_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +233,7 @@ CREATE TABLE `order_item` (
   KEY `dish_id` (`dish_id`),
   CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `food_order` (`id`),
   CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +242,6 @@ CREATE TABLE `order_item` (
 
 LOCK TABLES `order_item` WRITE;
 /*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-INSERT INTO `order_item` VALUES (1,1,2,2,15.00),(2,1,2,2,15.00),(3,2,4,5,13.80),(4,3,4,2,13.80),(5,4,4,1,13.80),(6,5,4,1,13.80),(7,6,4,1,13.80),(8,7,4,1,13.80),(9,8,6,1,10.00);
 /*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +261,7 @@ CREATE TABLE `order_status_log` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_status_log_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `food_order` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +270,6 @@ CREATE TABLE `order_status_log` (
 
 LOCK TABLES `order_status_log` WRITE;
 /*!40000 ALTER TABLE `order_status_log` DISABLE KEYS */;
-INSERT INTO `order_status_log` VALUES (1,1,'ACCEPTED','ACCEPTED','2026-09-15 20:13:14'),(2,2,'CREATE','WAIT_PAY','2026-09-22 22:57:20'),(3,3,'CREATE','WAIT_PAY','2026-09-22 23:00:37'),(4,3,'WAIT_PAY','WAIT_ACCEPT','2026-09-22 23:01:09'),(5,3,'WAIT_ACCEPT','MAKING','2026-09-22 23:02:09'),(6,3,'MAKING','DELIVERING','2026-09-22 23:02:14'),(7,3,'DELIVERING','DELIVERED','2026-09-22 23:02:18'),(8,3,'DELIVERED','COMPLETED','2026-09-22 23:02:28'),(9,2,'WAIT_PAY','CANCELLED','2026-09-22 23:05:48'),(10,4,'CREATE','WAIT_PAY','2026-09-22 23:07:06'),(11,4,'WAIT_PAY','WAIT_ACCEPT','2026-09-22 23:07:28'),(12,4,'WAIT_ACCEPT','MAKING','2026-09-22 23:07:54'),(13,4,'MAKING','READY_PICKUP','2026-09-22 23:08:02'),(14,4,'READY_PICKUP','COMPLETED','2026-09-22 23:08:38'),(15,5,'CREATE','WAIT_PAY','2026-09-22 23:53:00'),(16,5,'WAIT_PAY','WAIT_ACCEPT','2026-09-22 23:56:33'),(17,6,'CREATE','WAIT_PAY','2026-09-24 18:14:53'),(18,6,'WAIT_PAY','CANCELLED','2026-09-24 18:15:16'),(19,7,'CREATE','WAIT_PAY','2026-09-24 18:30:26'),(20,7,'WAIT_PAY','WAIT_ACCEPT','2026-09-24 18:30:45'),(21,8,'CREATE','WAIT_PAY','2026-09-24 19:24:03'),(22,8,'WAIT_PAY','WAIT_ACCEPT','2026-09-24 19:33:38');
 /*!40000 ALTER TABLE `order_status_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +296,7 @@ CREATE TABLE `payment` (
   KEY `fk_payment_user` (`user_id`),
   CONSTRAINT `fk_payment_order` FOREIGN KEY (`order_id`) REFERENCES `food_order` (`id`),
   CONSTRAINT `fk_payment_user` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +305,6 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,'PAY17900925931535',5,5,13.80,'MOCK','SUCCESS','2026-09-22 23:56:33','2026-09-22 23:56:33'),(2,'PAY17902458456297',7,5,13.80,'MOCK','SUCCESS','2026-09-24 18:30:45','2026-09-24 18:30:45'),(3,'PAY17902496187378',8,5,10.00,'MOCK','SUCCESS','2026-09-24 19:33:38','2026-09-24 19:33:38');
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,7 +329,7 @@ CREATE TABLE `review` (
   KEY `fk_review_user` (`user_id`),
   CONSTRAINT `fk_review_order` FOREIGN KEY (`order_id`) REFERENCES `food_order` (`id`),
   CONSTRAINT `fk_review_user` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,7 +338,6 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,3,5,5,'菜品味道很好，配送很及时。',1,'2026-09-22 23:13:15','2026-09-22 23:13:15');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,7 +362,7 @@ CREATE TABLE `stall` (
   KEY `idx_stall_merchant_id` (`merchant_id`),
   CONSTRAINT `fk_stall_canteen` FOREIGN KEY (`canteen_id`) REFERENCES `canteen` (`id`),
   CONSTRAINT `fk_stall_merchant` FOREIGN KEY (`merchant_id`) REFERENCES `sys_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,7 +371,7 @@ CREATE TABLE `stall` (
 
 LOCK TABLES `stall` WRITE;
 /*!40000 ALTER TABLE `stall` DISABLE KEYS */;
-INSERT INTO `stall` VALUES (1,1,2,'一楼快餐档口','08:00-20:00',1,'2026-09-14 22:01:26','2026-09-22 22:30:31'),(2,1,4,'商家测试档口','07:00-21:00',1,'2026-09-22 22:23:19','2026-09-23 19:42:37');
+INSERT INTO `stall` VALUES (1,1,3,'茶百道','09:00-22:00',1,'2026-10-12 21:45:27','2026-10-12 21:45:27'),(2,1,5,'炒菜馆','10:00-21:00',1,'2026-10-12 21:45:27','2026-10-12 21:45:27'),(3,2,4,'张师傅麻辣烫','10:00-22:00',1,'2026-10-12 21:45:27','2026-10-12 21:45:27'),(4,2,6,'麦当劳','07:00-23:00',1,'2026-10-12 21:45:27','2026-10-12 21:45:27'),(5,2,7,'清真馆','08:00-21:00',1,'2026-10-12 21:45:27','2026-10-12 21:45:27');
 /*!40000 ALTER TABLE `stall` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,7 +395,7 @@ CREATE TABLE `sys_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -408,17 +404,9 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'test001','$2a$10$X1ufsUkP1BYV9wpDm8DfKuq3DAE6KP14Q.Tmv6t8x4uqkv/4I6pBa','测试用户','13800000001','STUDENT',1,'2026-09-13 21:37:53','2026-09-13 21:37:53'),(2,'merchant001','$2a$10$FcGOUtWF5fmC.8/v4OtG9urjhvFaIOzZnid2PKUL2PpeZzQ6Y339G','张老板','13800000002','MERCHANT',1,'2026-09-14 21:59:30','2026-09-14 21:59:30'),(3,'student1','$2a$10$UKzBxODR39UkvQ7aDZbcIut60zq17zCeKIjOqDqat.xCqs8be.uS2','学生','11111111111','STUDENT',1,'2026-09-19 00:20:06','2026-09-19 00:20:06'),(4,'merchant_test','$2a$10$YVVoC.Q/Drzoo7driVgDhujec6uAeUeOKTGj5XvQz68ZppeZm7F3m','测试商家','33333333333','MERCHANT',1,'2026-09-19 00:27:57','2026-09-19 00:27:57'),(5,'address_student_0922','$2a$10$duzt15UAH4LRgDPQDn/8GO9yVqGjqfBT7t3cHY5T0x9NlU3PmeGzy','测试学生已修改','13900009220','STUDENT',1,'2026-09-22 22:43:07','2026-09-24 17:02:31');
+INSERT INTO `sys_user` VALUES (1,'1','$2a$10$B1W7.mSDVlqjkXtuehis9uemWdQlV3sxGK2h9lTXyKEdnSIxMxCaK','困困','15383452536','STUDENT',1,'2026-10-12 21:24:02','2026-10-12 21:24:02'),(3,'茶百道','$2a$10$H4suuuzGFctqWIeyed9w/eD5GtBjrnNFmw6c.nt7Te4ok7qKdZ4Ia','茶百道','10101010101','MERCHANT',1,'2026-10-12 21:26:10','2026-10-12 21:26:10'),(4,'张师傅麻辣烫','$2a$10$fUSDazUgnw/z3xHcrp8fve7iRbJibKhqUJizT9bj.DbcGXyZy9Oj2','张师傅麻辣烫','12121212121','MERCHANT',1,'2026-10-12 21:26:50','2026-10-12 21:26:50'),(5,'炒菜馆','$2a$10$SsY8UG3Q9./D8klbSCcDcuoHhJmTAULytI6X29qnejIrtvyYFgQbu','炒菜馆','12121212123','MERCHANT',1,'2026-10-12 21:27:13','2026-10-12 21:27:13'),(6,'麦当劳','$2a$10$ADcxGnTsuAuF8MEUNFmZGuvTFMelcEL0xQKy5b8jx2BJJs9THSFfO','麦当劳','12121212124','MERCHANT',1,'2026-10-12 21:27:30','2026-10-12 21:27:30'),(7,'清真馆','$2a$10$cODM6DnVkZXLUeMC38D3W.1UgLRR9VocExOrxe5mkh2aB/2hcHSDi','清真馆','12121212125','MERCHANT',1,'2026-10-12 21:29:18','2026-10-12 21:29:18');
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'campus_food_order'
---
-
---
--- Dumping routines for database 'campus_food_order'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -429,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-24 20:33:56
+-- Dump completed on 2026-10-12 22:20:49

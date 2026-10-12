@@ -1,0 +1,297 @@
+/* 让所有元素的宽度计算更容易理解 */
+* {
+  box-sizing: border-box;
+}
+
+/* 设置整个网页的默认样式 */
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  color: #a631cd;
+  background-color: #f1d1f9;
+}
+
+/* 去掉按钮默认的奇怪字体 */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* 整个网页：左侧菜单 + 右侧内容 */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 左侧导航栏 */
+.sidebar {
+  width: 230px;
+  min-height: 100vh;
+  padding: 28px 20px;
+  color: white;
+  background-color: #34034f;
+}
+
+/* 左侧标题 */
+.sidebar h1 {
+  margin: 0 0 45px;
+  font-size: 22px;
+}
+
+/* 左侧导航菜单 */
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 左侧菜单按钮 */
+.sidebar nav button {
+  padding: 13px 15px;
+  border: none;
+  color: #d9eee8;
+  background-color: transparent;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* 鼠标移动到菜单按钮上时 */
+.sidebar nav button:hover {
+  color: white;
+  background-color: #401167;
+}
+
+/* 右侧主内容区域 */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 42px;
+}
+
+/* 顶部欢迎区域 */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+/* 顶部网站名称 */
+.top-header p {
+  margin: 0;
+  color: #174c43;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* 顶部退出按钮 */
+.top-header button {
+  padding: 9px 16px;
+  border: 1px solid #d5e2dc;
+  color: #376257;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* 顶部欢迎横幅 */
+.hero {
+  padding: 35px 40px;
+  color: white;
+  background: linear-gradient(120deg, #267d6d, #57aa8c);
+  border-radius: 18px;
+}
+
+/* 横幅中的小文字 */
+.hero p {
+  margin: 0 0 12px;
+  color: #d9f2e9;
+}
+
+/* 横幅主标题 */
+.hero h2 {
+  margin: 0;
+  font-size: 32px;
+}
+
+/* 菜品和购物车的整体区域 */
+.content-area {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 30px;
+}
+
+/* 菜品标题 */
+.dish-section > h2 {
+  margin: 0 0 18px;
+  font-size: 24px;
+}
+
+/* 菜品卡片 */
+.dish-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 16px;
+  padding: 18px;
+  background-color: white;
+  border: 1px solid #e2ebe6;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(38, 75, 61, 0.05);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 菜品图片区域 */
+.dish-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  background-color: #fff0d5;
+  border-radius: 12px;
+  font-size: 44px;
+}
+
+/* 菜品详细信息 */
+.dish-info {
+  flex: 1;
+}
+
+/* 档口名称 */
+.dish-info > p:first-child {
+  margin: 0 0 7px;
+  color: #6c9b8e;
+  font-size: 12px;
+}
+
+/* 菜品名称 */
+.dish-info h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+/* 菜品介绍 */
+.dish-info p {
+  margin: 0 0 14px;
+  color: #82908b;
+  font-size: 13px;
+}
+
+/* 价格和加入购物车按钮所在的一行 */
+.dish-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 菜品价格 */
+.dish-bottom strong {
+  color: #dc7048;
+  font-size: 21px;
+}
+
+/* 加入购物车按钮 */
+.dish-bottom button {
+  padding: 8px 13px;
+  border: none;
+  color: white;
+  background-color: #168071;
+  border-radius: 7px;
+}
+
+/* 鼠标移动到加入购物车按钮上 */
+.dish-bottom button:hover {
+  background-color: #0d6257;
+}
+
+/* 购物车 */
+.cart-section {
+  min-height: 220px;
+  padding: 24px;
+  background-color: white;
+  border: 1px solid #e2ebe6;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(38, 75, 61, 0.05);
+}
+
+/* 购物车标题 */
+.cart-section h2 {
+  margin: 0 0 20px;
+  color: #174c43;
+  font-size: 20px;
+}
+
+/* 购物车提示文字 */
+.cart-section p {
+  color: #87958f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 手机屏幕适配 */
+@media (max-width: 800px) {
+  .app-shell {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .content-area {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-section {
+    order: -1;
+  }
+}
+
+
+
+
+/* 鼠标移动到菜品卡片上时 */
+.dish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(38, 75, 61, 0.12);
+}
+
+/* 鼠标按下按钮时 */
+.dish-bottom button:active {
+  transform: scale(0.96);
+}
+
+
+
+
+
+/* 购物车左侧增加一条强调线 */
+.cart-section {
+  border-left: 4px solid #168071;
+}
+
+/* 购物车提示文字居中 */
+.cart-section p {
+  text-align: center;
+}
+
+/* 购物车内部留出更多空间 */
+.cart-section {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
